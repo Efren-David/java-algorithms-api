@@ -34,7 +34,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
 
     private ParamResponseData procesarSolicitud(
             ParamRequestData data,
-                Function<ParamRequestData, ParamResponseData> procesador) {
+            Function<ParamRequestData, ParamResponseData> procesador) {
 
         log.info(
                 "Inicio de procesamiento de solicitud. request={}", data);
