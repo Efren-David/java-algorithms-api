@@ -28,9 +28,8 @@ public class AlgorithmsApiController {
     public ResponseEntity<ParamResponseData> fibonacci(@RequestBody ParamRequestData data) {
         ParamResponseData responseData = algorithmService.fibonacci(
                 data);
-
         return ResponseEntity.status(
                 HttpStatus.OK).body(
-                        responseData);
+                        responseData)
     }
 }
