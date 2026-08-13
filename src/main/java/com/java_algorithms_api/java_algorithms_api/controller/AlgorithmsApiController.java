@@ -30,6 +30,6 @@ public class AlgorithmsApiController {
                 data);
         return ResponseEntity.status(
                 HttpStatus.OK).body(
-                        responseData)
+                        responseData);
     }
 }
