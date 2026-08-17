@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlgorithmsApiController {
 
     
+    
     private final AlgorithmService algorithmService;
 
     public AlgorithmsApiController(AlgorithmService algorithmService) {
