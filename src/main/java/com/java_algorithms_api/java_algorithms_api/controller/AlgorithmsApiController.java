@@ -1,7 +1,9 @@
 package com.java_algorithms_api.java_algorithms_api.controller;
 
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestData;
+import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseData;
+import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseString;
 import com.java_algorithms_api.java_algorithms_api.service.AlgorithmService;
 
 import org.springframework.http.HttpStatus;
@@ -18,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController @RequestMapping("/v1/core/algorithms")
 public class AlgorithmsApiController {
 
-    
-    
     private final AlgorithmService algorithmService;
 
     public AlgorithmsApiController(AlgorithmService algorithmService) {
@@ -32,4 +32,11 @@ public class AlgorithmsApiController {
         return ResponseEntity.status(HttpStatus.OK).body(responseData);
 
     }
+
+    @PostMapping("/stringReversal")
+    public ResponseEntity<ParamResponseString> stringReversal(@RequestBody ParamRequestString cadena) {
+        ParamResponseString response = algorithmService.stringReversal(cadena);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+
 }

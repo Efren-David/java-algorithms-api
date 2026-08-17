@@ -25,8 +25,7 @@ public class LoggingAspect {
 
         log.info("Entrando a {}.{}.{}",
                 clase,
-                metodo,
-                elemento);
+                metodo);
     }
 
     @AfterReturning(
@@ -58,7 +57,6 @@ public class LoggingAspect {
 
         log.info("Entrando a el controlador {}.{}.{}",
                 clase,
-                metodo,
-                elemento);
+                metodo);
     }
 }
