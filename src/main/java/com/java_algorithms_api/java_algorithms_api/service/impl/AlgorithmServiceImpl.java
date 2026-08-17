@@ -1,7 +1,9 @@
 package com.java_algorithms_api.java_algorithms_api.service.impl;
 
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestData;
+import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseData;
+import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ResponseBuilder;
 import com.java_algorithms_api.java_algorithms_api.service.AlgorithmService;
 
@@ -30,6 +32,21 @@ public class AlgorithmServiceImpl implements AlgorithmService {
 
         return procesarSolicitud(data,
                 this::procesarResultado);
+    }
+
+    @Override
+    public ParamResponseString stringReversal(ParamRequestString cadena) {
+
+        String result = reverseInputString(cadena.getCadena());
+
+        ParamResponseString response = new ParamResponseString();
+
+        response.setCodigo("0");
+        response.setMsj("Cadena invertida exitosamente");
+        response.setCadenaEntrada(cadena.getCadena());
+        response.setCadenaSalisa(result);
+
+        return response;
     }
 
     private ParamResponseData procesarSolicitud(
@@ -92,12 +109,6 @@ public class AlgorithmServiceImpl implements AlgorithmService {
         response.setOutput(numeros);
 
         return response;
-    }
-
-    @Override
-    public ParamResponseData stringReversal(ParamRequestData data) {
-
-        return null;
     }
 
     public static String reverseInputString(String myString) {
