@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController @RequestMapping("/v1/core/algorithms")
 public class AlgorithmsApiController {
 
+    
     private final AlgorithmService algorithmService;
 
     public AlgorithmsApiController(AlgorithmService algorithmService) {
