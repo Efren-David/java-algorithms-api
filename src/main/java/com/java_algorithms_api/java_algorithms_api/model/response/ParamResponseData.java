@@ -11,13 +11,11 @@ import java.util.List;
 
 @Data
 
-@JsonPropertyOrder({ "codigo", "msj", "input",
-        "output" }) 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class ParamResponseData {
+@JsonPropertyOrder({ "codigo", "msj", "input", "output" }) @JsonInclude(JsonInclude.Include.NON_NULL)
+public class ParamResponseData extends BaseResponse{
 
-    private String codigo;
-    private String msj;
+//    private String codigo;
+//    private String msj;
     private Integer input;
     private List<Integer> output;
 

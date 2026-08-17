@@ -26,10 +26,8 @@ public class AlgorithmsApiController {
 
     @PostMapping("/fibonacci")
     public ResponseEntity<ParamResponseData> fibonacci(@RequestBody ParamRequestData data) {
-        ParamResponseData responseData = algorithmService.fibonacci(
-                data);
-        return ResponseEntity.status(
-                HttpStatus.OK).body(
-                        responseData);
+        ParamResponseData responseData = algorithmService.fibonacci(data);
+        return ResponseEntity.status(HttpStatus.OK).body(responseData);
+
     }
 }

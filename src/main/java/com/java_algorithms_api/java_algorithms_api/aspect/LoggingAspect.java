@@ -23,8 +23,10 @@ public class LoggingAspect {
         // Obtiene la línea del método interceptado
         StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
 
-        log.info(
-                "Entrando a {}.{}()", clase, metodo);
+        log.info("Entrando a {}.{}.{}",
+                clase,
+                metodo,
+                elemento);
     }
 
     @AfterReturning(
@@ -37,10 +39,26 @@ public class LoggingAspect {
 
         StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
 
-        log.info(
-                "Saliendo de {}.{}()", clase, metodo);
+        log.info("Saliendo de {}.{}()",
+                clase,
+                metodo);
 
-        log.info(
-                "Resultado: {}", resultado);
+        log.info("Resultado: {}",
+                resultado);
+    }
+
+    @Before("execution(* com.java_algorithms_api.java_algorithms_api.controller.*.*(..))")
+    public void antesDeEjecutarController(JoinPoint joinPoint) {
+
+        String clase = joinPoint.getTarget().getClass().getSimpleName();
+        String metodo = joinPoint.getSignature().getName();
+
+        // Obtiene la línea del método interceptado
+        StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
+
+        log.info("Entrando a el controlador {}.{}.{}",
+                clase,
+                metodo,
+                elemento);
     }
 }

@@ -25,45 +25,44 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     @Override
     public ParamResponseData fibonacci(ParamRequestData data) {
 
-        log.info(
-                "Entrando a: << procesarSolicitud >> || request: {}", data);
+        log.info("Entrando a: << procesarSolicitud >> || request: {}",
+                data);
 
-        return procesarSolicitud(
-                data, this::procesarResultado);
+        return procesarSolicitud(data,
+                this::procesarResultado);
     }
 
     private ParamResponseData procesarSolicitud(
             ParamRequestData data,
             Function<ParamRequestData, ParamResponseData> procesador) {
 
-        log.info(
-                "Inicio de procesamiento de solicitud. request={}", data);
+        log.info("Inicio de procesamiento de solicitud. request={}",
+                data);
 
         try {
 
             if (data == null || data.getInput() == null) {
 
-                log.warn(
-                        "Validación fallida. request={}", data);
+                log.warn("Validación fallida. request={}",
+                        data);
 
-                return ResponseBuilder.buildErrorResponse(
-                        "ERROR EN EL JSON", HttpStatus.BAD_REQUEST);
+                return ResponseBuilder.buildErrorResponse("ERROR EN EL JSON",
+                        HttpStatus.BAD_REQUEST);
             }
 
-            log.info(
-                    "Validación exitosa. input={}", data.getInput());
+            log.info("Validación exitosa. input={}",
+                    data.getInput());
 
-            return procesador.apply(
-                    data);
+            return procesador.apply(data);
 
         }
         catch (Exception e) {
 
-            log.error(
-                    "Error interno al procesar la solicitud", e);
+            log.error("Error interno al procesar la solicitud",
+                    e);
 
-            return ResponseBuilder.buildErrorResponse(
-                    "Error interno del servidor", HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseBuilder.buildErrorResponse("Error interno del servidor",
+                    HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -77,27 +76,42 @@ public class AlgorithmServiceImpl implements AlgorithmService {
         int b = 1;
 
         for (int i = 0; i < data.getInput(); i++) {
-            numeros.add(
-                    a);
+            numeros.add(a);
 
             int siguiente = a + b;
             a = b;
             b = siguiente;
         }
 
-        log.info(
-                "Algoritmo fibonacci ejecutado correctamente. elementosGenerados={}", numeros.size());
+        log.info("Algoritmo fibonacci ejecutado correctamente. elementosGenerados={}",
+                numeros.size());
 
-        response.setCodigo(
-                "0");
-        response.setMsj(
-                "Operacion fibonacci exitosa");
-        response.setInput(
-                data.getInput());
-        response.setOutput(
-                numeros);
+        response.setCodigo("0");
+        response.setMsj("Operacion fibonacci exitosa");
+        response.setInput(data.getInput());
+        response.setOutput(numeros);
 
         return response;
+    }
+
+    @Override
+    public ParamResponseData stringReversal(ParamRequestData data) {
+
+        return null;
+    }
+
+    public static String reverseInputString(String myString) {
+
+        if (myString == null)
+            return myString;
+
+        String reverseString = "";
+
+        for (int i = myString.length() - 1; i >= 0; i--) {
+
+            reverseString = reverseString + myString.charAt(i);
+        }
+        return reverseString;
     }
 
 }
