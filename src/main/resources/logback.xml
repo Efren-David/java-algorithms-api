@@ -4,7 +4,7 @@
 			resource="org/springframework/boot/logging/logback/defaults.xml" />
 
 	<property name="springAppName"
-	          value="ms-cotizacion" />
+	          value="java-algorithms-api" />
 	<!-- Example for logging into the build folder of your project -->
 	<property name="LOG_FILE"
 	          value="${BUILD_FOLDER:-log}/${springAppName}" />

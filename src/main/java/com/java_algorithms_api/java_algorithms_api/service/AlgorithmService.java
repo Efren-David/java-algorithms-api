@@ -6,4 +6,6 @@ import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseD
 public interface AlgorithmService {
 
     ParamResponseData fibonacci(ParamRequestData data);
+
+    ParamResponseData stringReversal(ParamRequestData data);
 }
