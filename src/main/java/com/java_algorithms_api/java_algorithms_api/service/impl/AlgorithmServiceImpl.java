@@ -1,6 +1,6 @@
 package com.java_algorithms_api.java_algorithms_api.service.impl;
 
-import com.java_algorithms_api.java_algorithms_api.mapper.Mapper;
+import com.java_algorithms_api.java_algorithms_api.mapper.ResponseMapper;
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestData;
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseData;
@@ -25,9 +25,10 @@ import java.util.function.Function;
 @Service @Slf4j
 public class AlgorithmServiceImpl implements AlgorithmService {
 
-    private final Mapper mapper;
+    
+    private final ResponseMapper mapper;
 
-    public AlgorithmServiceImpl(Mapper mapper) {
+    public AlgorithmServiceImpl(ResponseMapper mapper) {
         this.mapper = mapper;
     }
 

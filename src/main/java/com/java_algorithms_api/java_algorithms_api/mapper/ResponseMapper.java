@@ -6,7 +6,7 @@ import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestStr
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseString;
 
 @Component
-public class Mapper {
+public class ResponseMapper {
 
     public ParamResponseString toResponse(ParamRequestString request, String result) {
 
