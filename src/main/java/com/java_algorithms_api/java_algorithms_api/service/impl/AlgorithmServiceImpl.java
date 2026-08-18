@@ -25,6 +25,7 @@ import java.util.function.Function;
 @Service @Slf4j
 public class AlgorithmServiceImpl implements AlgorithmService {
 
+    
     private final ResponseMapper mapper;
 
     public AlgorithmServiceImpl(ResponseMapper mapper) {
