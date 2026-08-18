@@ -1,5 +1,6 @@
 package com.java_algorithms_api.java_algorithms_api.service.impl;
 
+import com.java_algorithms_api.java_algorithms_api.mapper.Mapper;
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestData;
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseData;
@@ -24,6 +25,12 @@ import java.util.function.Function;
 @Service @Slf4j
 public class AlgorithmServiceImpl implements AlgorithmService {
 
+    private final Mapper mapper;
+
+    public AlgorithmServiceImpl(Mapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public ParamResponseData fibonacci(ParamRequestData data) {
 
@@ -39,14 +46,8 @@ public class AlgorithmServiceImpl implements AlgorithmService {
 
         String result = reverseInputString(cadena.getCadena());
 
-        ParamResponseString response = new ParamResponseString();
-
-        response.setCodigo("0");
-        response.setMsj("Cadena invertida exitosamente");
-        response.setCadenaEntrada(cadena.getCadena());
-        response.setCadenaSalisa(result);
-
-        return response;
+        return mapper.toResponse(cadena,
+                result);
     }
 
     private ParamResponseData procesarSolicitud(
