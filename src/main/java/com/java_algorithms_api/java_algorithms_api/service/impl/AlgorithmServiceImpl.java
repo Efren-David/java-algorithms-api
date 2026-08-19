@@ -25,7 +25,6 @@ import java.util.function.Function;
 @Service @Slf4j
 public class AlgorithmServiceImpl implements AlgorithmService {
 
-    
     private final ResponseMapper mapper;
 
     public AlgorithmServiceImpl(ResponseMapper mapper) {
@@ -33,7 +32,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     @Override
-    public ParamResponseData fibonacci(ParamRequestData data) {
+    public ParamResponseData fibonacci(ParamRequestData<Integer> data) {
 
         log.info("Entrando a: << procesarSolicitud >> || request: {}",
                 data);
@@ -52,8 +51,8 @@ public class AlgorithmServiceImpl implements AlgorithmService {
     }
 
     private ParamResponseData procesarSolicitud(
-            ParamRequestData data,
-            Function<ParamRequestData, ParamResponseData> procesador) {
+            ParamRequestData<Integer> data,
+            Function<ParamRequestData<Integer>, ParamResponseData> procesador) {
 
         log.info("Inicio de procesamiento de solicitud. request={}",
                 data);
@@ -85,7 +84,7 @@ public class AlgorithmServiceImpl implements AlgorithmService {
         }
     }
 
-    private ParamResponseData procesarResultado(ParamRequestData data) {
+    private ParamResponseData procesarResultado(ParamRequestData<Integer> data) {
 
         ParamResponseData response = new ParamResponseData();
 

@@ -4,9 +4,12 @@ import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestDat
 import com.java_algorithms_api.java_algorithms_api.model.request.ParamRequestString;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseData;
 import com.java_algorithms_api.java_algorithms_api.model.response.ParamResponseString;
+import com.java_algorithms_api.java_algorithms_api.model.response.ResponseBuilder;
 import com.java_algorithms_api.java_algorithms_api.service.AlgorithmService;
+import com.java_algorithms_api.java_algorithms_apiclient.ValidaSesionFeignClient;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,20 +24,32 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlgorithmsApiController {
 
     private final AlgorithmService algorithmService;
+    private final ValidaSesionFeignClient feignClient;
 
-    public AlgorithmsApiController(AlgorithmService algorithmService) {
+    public AlgorithmsApiController(AlgorithmService algorithmService, ValidaSesionFeignClient feignClient) {
         this.algorithmService = algorithmService;
+        this.feignClient = feignClient;
+
     }
 
     @PostMapping("/fibonacci")
-    public ResponseEntity<ParamResponseData> fibonacci(@RequestBody ParamRequestData data) {
-        ParamResponseData responseData = algorithmService.fibonacci(data);
-        return ResponseEntity.status(HttpStatus.OK).body(responseData);
+    public ResponseEntity<ParamResponseData> fibonacci(@RequestBody ParamRequestData<Integer> data) {
+
+        boolean respuesta = feignClient.sesionValida(data);
+
+        if (respuesta) {
+            ParamResponseData responseData = algorithmService.fibonacci(data);
+            return ResponseEntity.status(HttpStatus.OK).body(responseData);
+        }
+
+        return ResponseEntity.ok(ResponseBuilder.buildErrorResponse("BAD_REQUEST",
+                HttpStatus.BAD_REQUEST));
 
     }
 
     @PostMapping("/stringReversal")
     public ResponseEntity<ParamResponseString> stringReversal(@RequestBody ParamRequestString cadena) {
+
         ParamResponseString response = algorithmService.stringReversal(cadena);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
