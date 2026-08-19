@@ -9,7 +9,6 @@ import com.java_algorithms_api.java_algorithms_api.service.AlgorithmService;
 import com.java_algorithms_api.java_algorithms_apiclient.ValidaSesionFeignClient;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,7 +32,7 @@ public class AlgorithmsApiController {
     }
 
     @PostMapping("/fibonacci")
-    public ResponseEntity<ParamResponseData> fibonacci(@RequestBody ParamRequestData<Integer> data) {
+    public ResponseEntity<?> fibonacci(@RequestBody ParamRequestData<Integer> data) {
 
         boolean respuesta = feignClient.sesionValida(data);
 
@@ -42,8 +41,8 @@ public class AlgorithmsApiController {
             return ResponseEntity.status(HttpStatus.OK).body(responseData);
         }
 
-        return ResponseEntity.ok(ResponseBuilder.buildErrorResponse("BAD_REQUEST",
-                HttpStatus.BAD_REQUEST));
+        return ResponseEntity.ok().body(ResponseBuilder.buildError(HttpStatus.BAD_REQUEST,
+                data));
 
     }
 
