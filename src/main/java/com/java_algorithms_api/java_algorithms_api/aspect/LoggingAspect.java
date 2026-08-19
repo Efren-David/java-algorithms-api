@@ -21,7 +21,7 @@ public class LoggingAspect {
         String metodo = joinPoint.getSignature().getName();
 
         // Obtiene la línea del método interceptado
-        StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
+//        StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
 
         log.info("Entrando a {}.{}.{}",
                 clase,
@@ -36,7 +36,7 @@ public class LoggingAspect {
         String clase = joinPoint.getTarget().getClass().getSimpleName();
         String metodo = joinPoint.getSignature().getName();
 
-        StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
+//        StackTraceElement elemento = Thread.currentThread().getStackTrace()[3];
 
         log.info("Saliendo de {}.{}()",
                 clase,
