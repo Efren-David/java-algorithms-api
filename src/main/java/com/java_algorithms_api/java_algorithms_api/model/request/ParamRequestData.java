@@ -4,9 +4,9 @@ import com.google.gson.Gson;
 import lombok.Data;
 
 @Data
-public class ParamRequestData {
+public class ParamRequestData<T> extends BaseRequest {
 
-    private Integer input;
+    private T input;
 
     @Override
     public String toString() {
