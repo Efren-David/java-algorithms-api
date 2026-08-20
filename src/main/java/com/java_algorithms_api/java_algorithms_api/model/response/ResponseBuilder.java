@@ -40,7 +40,7 @@ public final class ResponseBuilder {
         errorResponse.setFolio(FOLIO);
         errorResponse.setInfo(INFO);
         errorResponse.getDetalles().put("detalle",
-                "Error: Verificar el cuerpo de la solicitud: ");
+                "Error: Verificar el cuerpo de la solicitud");
 
         log.warn("Solicitud inválida. noEmpleadoSession={}",
                 data.getNoEmpleadoSession());
