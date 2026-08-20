@@ -34,20 +34,21 @@ public class AlgorithmsApiController {
     @PostMapping("/fibonacci")
     public ResponseEntity<?> fibonacci(@RequestBody ParamRequestData<Integer> data) {
 
-        boolean respuesta = feignClient.sesionValida(data);
+        boolean sesionValida = feignClient.sesionValida(data);
 
-        if (respuesta) {
-            ParamResponseData responseData = algorithmService.fibonacci(data);
-            return ResponseEntity.status(HttpStatus.OK).body(responseData);
+        if (!sesionValida) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ResponseBuilder.buildError(HttpStatus.UNAUTHORIZED,
+                            data));
         }
 
-        return ResponseEntity.ok().body(ResponseBuilder.buildError(HttpStatus.BAD_REQUEST,
-                data));
+        ParamResponseData responseData = algorithmService.fibonacci(data);
+        return ResponseEntity.status(HttpStatus.OK).body(responseData);
 
     }
 
     @PostMapping("/stringReversal")
-    public ResponseEntity<ParamResponseString> stringReversal(@RequestBody ParamRequestString cadena) {
+    public ResponseEntity<?> stringReversal(@RequestBody ParamRequestString cadena) {
 
         ParamResponseString response = algorithmService.stringReversal(cadena);
         return ResponseEntity.status(HttpStatus.OK).body(response);
